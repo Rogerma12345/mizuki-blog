@@ -27,7 +27,6 @@ jobs:
         env:
           UMAMI_API_KEY: ${{ secrets.UMAMI_API_KEY }}
         # 下面这些都是可选项，默认即可，先不要乱改
-        # with:
         #   path: . # Astro 项目的根目录（默认就是仓库根目录）
         #   node-version: 20 # 指定 Node 版本（默认也是 20）
         #   package-manager: pnpm@latest # 一般不需要写，会自动根据锁定文件识别
