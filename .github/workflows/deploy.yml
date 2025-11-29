@@ -1,15 +1,12 @@
 name: Deploy to Pages Branch
 
 on:
-  # 推送到 master 分支时触发
   push:
-    branches: [ master ]
-  # 允许在 Actions 页面手动触发
+    branches: [ master ]   # 你当前推的是 master，所以这里用 master
   workflow_dispatch:
 
-# 需要写入权限以推送到 pages 分支
 permissions:
-  contents: write
+  contents: write          # 需要写权限才可以推到 pages 分支
 
 jobs:
   build-and-deploy:
@@ -19,19 +16,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true              # 支持 Git Submodule 模式
+          submodules: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'            # 与本地一致的 Node 版本
-          cache: 'pnpm'
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10                   # 对应你本地的 pnpm 10.x
+          version: 10
           run_install: false
 
       - name: Install dependencies
@@ -40,18 +37,12 @@ jobs:
       - name: Build site
         run: pnpm run build
         env:
-          # 如需启用内容分离，在 secrets 中配置后再取消注释
-          # ENABLE_CONTENT_SYNC: true
-          # CONTENT_REPO_URL: ${{ secrets.CONTENT_REPO_URL }}
-          # USE_SUBMODULE: true
-
-          # 其他环境变量
           UMAMI_API_KEY: ${{ secrets.UMAMI_API_KEY }}
 
       - name: Deploy to pages branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: pages          # 部署到 pages 分支
-          folder: dist           # Astro 默认构建输出目录
-          clean: true            # 清理目标分支旧文件
+          branch: pages    # 部署输出到 pages 分支
+          folder: dist     # Astro 的构建目录
+          clean: true
