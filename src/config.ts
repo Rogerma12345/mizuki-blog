@@ -170,7 +170,7 @@ export const siteConfig: SiteConfig = {
 	generateOgImages: false, // 启用生成OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
 	favicon: [
 		{
-			src: withBase("/favicon/favicon.ico"),
+			src: "/favicon/favicon.ico",
 		},
 	],
 
