@@ -1,48 +1,44 @@
-name: Deploy to Pages Branch
+name: Deploy to GitHub Pages
 
 on:
+  # 每次推送到 `master` 分支时触发
   push:
-    branches: [ master ]        # 你当前推的是 master
+    branches: [ master ]
+  # 允许在 Actions 页面手动触发
   workflow_dispatch:
 
+# 允许构建并部署到 GitHub Pages
 permissions:
-  contents: write               # 需要写权限才可以推到 pages 分支
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout your repository using git
         uses: actions/checkout@v4
-        with:
-          submodules: true
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-          run_install: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build site
-        run: pnpm run build
+      # 使用官方 withastro/action，一步完成：安装依赖 + 构建 + 上传 Pages artifact
+      - name: Install, build, and upload your site
+        uses: withastro/action@v3
+        # 如果有环境变量要传给构建（比如 UMAMI_API_KEY），写在这里
         env:
           UMAMI_API_KEY: ${{ secrets.UMAMI_API_KEY }}
+        # 下面这些都是可选项，默认即可，先不要乱改
+        # with:
+        #   path: . # Astro 项目的根目录（默认就是仓库根目录）
+        #   node-version: 20 # 指定 Node 版本（默认也是 20）
+        #   package-manager: pnpm@latest # 一般不需要写，会自动根据锁定文件识别
 
-      - name: Deploy to pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: pages          # 部署输出到 pages 分支
-          folder: dist           # Astro 的构建目录
-          clean: true
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
