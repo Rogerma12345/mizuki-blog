@@ -16,13 +16,15 @@ import { LinkPreset } from "./types/config";
 
 // 移除i18n导入以避免循环依赖
 
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.slice(1)}`;
+
 // 定义站点语言
-const SITE_LANG = "en"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
+const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
 	title: "Mizuki",
 	subtitle: "One demo website",
-	siteURL: "https://mizuki.mysqil.com/", // 请替换为你的站点URL，以斜杠结尾
+	siteURL: "https://rogerma12345.github.io/mizuki-blog/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2025-01-01", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
@@ -51,7 +53,7 @@ export const siteConfig: SiteConfig = {
 		// 顶栏标题文本
 		text: "MizukiUI",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
-		icon: "assets/home/home.png",
+		icon: withBase("/assets/home/home.png"),
 	},
 
 	bangumi: {
@@ -93,20 +95,20 @@ export const siteConfig: SiteConfig = {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
 			desktop: [
-				"/assets/desktop-banner/1.webp",
-				"/assets/desktop-banner/2.webp",
-				"/assets/desktop-banner/3.webp",
-				"/assets/desktop-banner/4.webp",
-				"/assets/desktop-banner/5.webp",
-				"/assets/desktop-banner/6.webp",
+				withBase("/assets/desktop-banner/1.webp"),
+				withBase("/assets/desktop-banner/2.webp"),
+				withBase("/assets/desktop-banner/3.webp"),
+				withBase("/assets/desktop-banner/4.webp"),
+				withBase("/assets/desktop-banner/5.webp"),
+				withBase("/assets/desktop-banner/6.webp"),
 			], // 桌面横幅图片
 			mobile: [
-				"/assets/mobile-banner/1.webp",
-				"/assets/mobile-banner/2.webp",
-				"/assets/mobile-banner/3.webp",
-				"/assets/mobile-banner/4.webp",
-				"/assets/mobile-banner/5.webp",
-				"/assets/mobile-banner/6.webp",
+				withBase("/assets/mobile-banner/1.webp"),
+				withBase("/assets/mobile-banner/2.webp"),
+				withBase("/assets/mobile-banner/3.webp"),
+				withBase("/assets/mobile-banner/4.webp"),
+				withBase("/assets/mobile-banner/5.webp"),
+				withBase("/assets/mobile-banner/6.webp"),
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
@@ -135,14 +137,10 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "美しいミズキ", // 主页横幅主标题
+			title: "My Mizuki Blog", // 主页横幅主标题
 
 			subtitle: [
-				"特別なことはないけど、君がいると十分です",
-				"今でもあなたは私の光",
-				"君ってさ、知らないうちに私の毎日になってたよ",
-				"君と話すと、なんか毎日がちょっと楽しくなるんだ",
-				"今日はなんでもない日。でも、ちょっとだけいい日",
+				"上善（じょうぜん）は水（みず）の若（ごと）",
 			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
@@ -204,20 +202,20 @@ export const siteConfig: SiteConfig = {
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
 		desktop: [
-			"/assets/desktop-banner/1.webp",
-			"/assets/desktop-banner/2.webp",
-			"/assets/desktop-banner/3.webp",
-			"/assets/desktop-banner/4.webp",
-			"/assets/desktop-banner/5.webp",
-			"/assets/desktop-banner/6.webp",
+			withBase("/assets/desktop-banner/1.webp"),
+			withBase("/assets/desktop-banner/2.webp"),
+			withBase("/assets/desktop-banner/3.webp"),
+			withBase("/assets/desktop-banner/4.webp"),
+			withBase("/assets/desktop-banner/5.webp"),
+			withBase("/assets/desktop-banner/6.webp"),
 		], // 桌面横幅图片
 		mobile: [
-			"/assets/mobile-banner/1.webp",
-			"/assets/mobile-banner/2.webp",
-			"/assets/mobile-banner/3.webp",
-			"/assets/mobile-banner/4.webp",
-			"/assets/mobile-banner/5.webp",
-			"/assets/mobile-banner/6.webp",
+			withBase("/assets/mobile-banner/1.webp"),
+			withBase("/assets/mobile-banner/2.webp"),
+			withBase("/assets/mobile-banner/3.webp"),
+			withBase("/assets/mobile-banner/4.webp"),
+			withBase("/assets/mobile-banner/5.webp"),
+			withBase("/assets/mobile-banner/6.webp"),
 		], // 移动横幅图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position
@@ -602,7 +600,7 @@ export const sakuraConfig: SakuraConfig = {
 // Pio 看板娘配置
 export const pioConfig: import("./types/config").PioConfig = {
 	enable: true, // 启用看板娘
-	models: ["/pio/models/pio/model.json"], // 默认模型路径
+	models: [withBase("/pio/models/pio/model.json")], // 默认模型路径
 	position: "left", // 默认位置在右侧
 	width: 280, // 默认宽度
 	height: 250, // 默认高度
