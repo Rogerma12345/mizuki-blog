@@ -232,7 +232,7 @@ export const navBarConfig: NavBarConfig = {
 		// 支持自定义导航栏链接,并且支持多级菜单,3.1版本新加
 		{
 			name: "Links",
-			url: "/links/",
+			url: withBase("/links/"),
 			icon: "material-symbols:link",
 			children: [
 				{
@@ -257,27 +257,27 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "My",
-			url: "/content/",
+			url: withBase("/content/"),
 			icon: "material-symbols:person",
 			children: [
 				{
 					name: "Anime",
-					url: "/anime/",
+					url: withBase("/anime/"),
 					icon: "material-symbols:movie",
 				},
 				{
 					name: "Diary",
-					url: "/diary/",
+					url: withBase("/diary/"),
 					icon: "material-symbols:book",
 				},
 				{
 					name: "Gallery",
-					url: "/albums/",
+					url: withBase("/albums/"),
 					icon: "material-symbols:photo-library",
 				},
 				{
 					name: "Devices",
-					url: "devices/",
+					url: withBase("/devices/"),
 					icon: "material-symbols:devices",
 					external: false,
 				},
@@ -285,17 +285,17 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "About",
-			url: "/content/",
+			url: withBase("/content/"),
 			icon: "material-symbols:info",
 			children: [
 				{
 					name: "About",
-					url: "/about/",
+					url: withBase("/about/"),
 					icon: "material-symbols:person",
 				},
 				{
 					name: "Friends",
-					url: "/friends/",
+					url: withBase("/friends/"),
 					icon: "material-symbols:group",
 				},
 			],
@@ -307,17 +307,17 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "Projects",
-					url: "/projects/",
+					url: withBase("/projects/"),
 					icon: "material-symbols:work",
 				},
 				{
 					name: "Skills",
-					url: "/skills/",
+					url: withBase("/skills/"),
 					icon: "material-symbols:psychology",
 				},
 				{
 					name: "Timeline",
-					url: "/timeline/",
+					url: withBase("/timeline/"),
 					icon: "material-symbols:timeline",
 				},
 			],
@@ -391,7 +391,7 @@ export const announcementConfig: AnnouncementConfig = {
 	link: {
 		enable: true, // 启用链接
 		text: "Learn More", // 链接文本
-		url: "/about/", // 链接 URL
+		url: withBase("/about/"), // 链接 URL
 		external: false, // 内部链接
 	},
 };

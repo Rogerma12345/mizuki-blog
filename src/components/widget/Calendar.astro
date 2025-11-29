@@ -90,7 +90,7 @@ const yearSuffix = isChinese ? '年' : ' ';
   </div>
 </WidgetLayout>
 
-<script define:vars={{ postDateMap: Object.fromEntries(postDateMap), allPostsData, monthNames, weekDays, yearSuffix }}>
+<script define:vars={{ postDateMap: Object.fromEntries(postDateMap), allPostsData, monthNames, weekDays, yearSuffix, BASE_URL: import.meta.env.BASE_URL }}>
   // 客户端动态渲染日历
   function renderCalendar() {
     const now = new Date();
@@ -186,7 +186,7 @@ const yearSuffix = isChinese ? '年' : ' ';
     
     if (postsList) {
       postsList.innerHTML = currentMonthPosts.map(post => `
-        <a href="/posts/${post.id}/" class="block text-sm text-neutral-700 dark:text-neutral-300 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors truncate px-2 py-1 rounded hover:bg-[var(--btn-plain-bg-hover)]">
+        <a href="${BASE_URL}posts/${post.id}/" class="block text-sm text-neutral-700 dark:text-neutral-300 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors truncate px-2 py-1 rounded hover:bg-[var(--btn-plain-bg-hover)]">
           ${post.title}
         </a>
       `).join('');
@@ -237,7 +237,7 @@ const yearSuffix = isChinese ? '年' : ' ';
         if (posts.length > 0 && postsList) {
           // 渲染文章列表
           postsList.innerHTML = posts.map(post => `
-            <a href="/posts/${post.id}/" class="block text-sm text-neutral-700 dark:text-neutral-300 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors truncate px-2 py-1 rounded hover:bg-[var(--btn-plain-bg-hover)]">
+            <a href="${BASE_URL}posts/${post.id}/" class="block text-sm text-neutral-700 dark:text-neutral-300 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition-colors truncate px-2 py-1 rounded hover:bg-[var(--btn-plain-bg-hover)]">
               ${post.data.title}
             </a>
           `).join('');
