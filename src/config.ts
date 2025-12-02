@@ -16,13 +16,15 @@ import { LinkPreset } from "./types/config";
 
 // 移除i18n导入以避免循环依赖
 
+const withBase = (path: string) => import.meta.env.BASE_URL + path;
+
 // 定义站点语言
 const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
 	title: "Mizuki",
 	subtitle: "One demo website",
-	siteURL: "", // Astro会自动处理，此处留空
+	siteURL: "https://rogerma12345.github.io/mizuki-blog/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2025-01-01", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
@@ -51,7 +53,7 @@ export const siteConfig: SiteConfig = {
 		// 顶栏标题文本
 		text: "MizukiUI",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
-		icon: "/assets/home/home.png",
+		icon: withBase("/assets/home/home.png"),
 	},
 
 	bangumi: {
@@ -93,20 +95,20 @@ export const siteConfig: SiteConfig = {
 		// 支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
 		src: {
 			desktop: [
-				"/assets/desktop-banner/1.webp",
-				"/assets/desktop-banner/2.webp",
-				"/assets/desktop-banner/3.webp",
-				"/assets/desktop-banner/4.webp",
-				"/assets/desktop-banner/5.webp",
-				"/assets/desktop-banner/6.webp",
+				withBase("/assets/desktop-banner/1.webp"),
+				withBase("/assets/desktop-banner/2.webp"),
+				withBase("/assets/desktop-banner/3.webp"),
+				withBase("/assets/desktop-banner/4.webp"),
+				withBase("/assets/desktop-banner/5.webp"),
+				withBase("/assets/desktop-banner/6.webp"),
 			], // 桌面横幅图片
 			mobile: [
-				"/assets/mobile-banner/1.webp",
-				"/assets/mobile-banner/2.webp",
-				"/assets/mobile-banner/3.webp",
-				"/assets/mobile-banner/4.webp",
-				"/assets/mobile-banner/5.webp",
-				"/assets/mobile-banner/6.webp",
+				withBase("/assets/mobile-banner/1.webp"),
+				withBase("/assets/mobile-banner/2.webp"),
+				withBase("/assets/mobile-banner/3.webp"),
+				withBase("/assets/mobile-banner/4.webp"),
+				withBase("/assets/mobile-banner/5.webp"),
+				withBase("/assets/mobile-banner/6.webp"),
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 
@@ -197,20 +199,20 @@ export const siteConfig: SiteConfig = {
 export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	src: {
 		desktop: [
-			"/assets/desktop-banner/1.webp",
-			"/assets/desktop-banner/2.webp",
-			"/assets/desktop-banner/3.webp",
-			"/assets/desktop-banner/4.webp",
-			"/assets/desktop-banner/5.webp",
-			"/assets/desktop-banner/6.webp",
+			withBase("/assets/desktop-banner/1.webp"),
+			withBase("/assets/desktop-banner/2.webp"),
+			withBase("/assets/desktop-banner/3.webp"),
+			withBase("/assets/desktop-banner/4.webp"),
+			withBase("/assets/desktop-banner/5.webp"),
+			withBase("/assets/desktop-banner/6.webp"),
 		], // 桌面横幅图片
 		mobile: [
-			"/assets/mobile-banner/1.webp",
-			"/assets/mobile-banner/2.webp",
-			"/assets/mobile-banner/3.webp",
-			"/assets/mobile-banner/4.webp",
-			"/assets/mobile-banner/5.webp",
-			"/assets/mobile-banner/6.webp",
+			withBase("/assets/mobile-banner/1.webp"),
+			withBase("/assets/mobile-banner/2.webp"),
+			withBase("/assets/mobile-banner/3.webp"),
+			withBase("/assets/mobile-banner/4.webp"),
+			withBase("/assets/mobile-banner/5.webp"),
+			withBase("/assets/mobile-banner/6.webp"),
 		], // 移动横幅图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position
@@ -230,7 +232,7 @@ export const navBarConfig: NavBarConfig = {
 		// 支持自定义导航栏链接,并且支持多级菜单,3.1版本新加
 		{
 			name: "Links",
-			url: "/links/",
+			url: withBase("/links/"),
 			icon: "material-symbols:link",
 			children: [
 				{
@@ -255,27 +257,27 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "My",
-			url: "/content/",
+			url: withBase("/content/"),
 			icon: "material-symbols:person",
 			children: [
 				{
 					name: "Anime",
-					url: "/anime/",
+					url: withBase("/anime/"),
 					icon: "material-symbols:movie",
 				},
 				{
 					name: "Diary",
-					url: "/diary/",
+					url: withBase("/diary/"),
 					icon: "material-symbols:book",
 				},
 				{
 					name: "Gallery",
-					url: "/albums/",
+					url: withBase("/albums/"),
 					icon: "material-symbols:photo-library",
 				},
 				{
 					name: "Devices",
-					url: "/devices/",
+					url: withBase("/devices/"),
 					icon: "material-symbols:devices",
 					external: false,
 				},
@@ -283,17 +285,17 @@ export const navBarConfig: NavBarConfig = {
 		},
 		{
 			name: "About",
-			url: "/content/",
+			url: withBase("/content/"),
 			icon: "material-symbols:info",
 			children: [
 				{
 					name: "About",
-					url: "/about/",
+					url: withBase("/about/"),
 					icon: "material-symbols:person",
 				},
 				{
 					name: "Friends",
-					url: "/friends/",
+					url: withBase("/friends/"),
 					icon: "material-symbols:group",
 				},
 			],
@@ -305,17 +307,17 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "Projects",
-					url: "/projects/",
+					url: withBase("/projects/"),
 					icon: "material-symbols:work",
 				},
 				{
 					name: "Skills",
-					url: "/skills/",
+					url: withBase("/skills/"),
 					icon: "material-symbols:psychology",
 				},
 				{
 					name: "Timeline",
-					url: "/timeline/",
+					url: withBase("/timeline/"),
 					icon: "material-symbols:timeline",
 				},
 			],
@@ -389,7 +391,7 @@ export const announcementConfig: AnnouncementConfig = {
 	link: {
 		enable: true, // 启用链接
 		text: "Learn More", // 链接文本
-		url: "/about/", // 链接 URL
+		url: withBase("/about/"), // 链接 URL
 		external: false, // 内部链接
 	},
 };
@@ -595,7 +597,7 @@ export const sakuraConfig: SakuraConfig = {
 // Pio 看板娘配置
 export const pioConfig: import("./types/config").PioConfig = {
 	enable: true, // 启用看板娘
-	models: ["/pio/models/pio/model.json"], // 默认模型路径
+	models: [withBase("/pio/models/pio/model.json")], // 默认模型路径
 	position: "left", // 默认位置在右侧
 	width: 280, // 默认宽度
 	height: 250, // 默认高度
@@ -628,10 +630,10 @@ export const widgetConfigs = {
 } as const;
 
 export const umamiConfig = {
-	enabled: false, // 是否显示Umami统计
+	enabled: true, // 是否显示Umami统计
 	apiKey: import.meta.env.UMAMI_API_KEY || "api_xxxxxxxx", // API密钥优先从环境变量读取，否则使用配置文件中的值
 	baseUrl: "https://api.umami.is", // Umami Cloud API地址
 	scripts: `
 <script defer src="XXXX.XXX" data-website-id="ABCD1234"></script>
-  `.trim(), // 上面填你要插入的Script,不用再去Layout中插入
+	 `.trim(), // 上面填你要插入的Script,不用再去Layout中插入
 } as const;

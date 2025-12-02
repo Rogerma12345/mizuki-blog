@@ -26,10 +26,11 @@ import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 // https://astro.build/config
+const base = "/mizuki-blog";
 export default defineConfig({
 	site: 'https://rogerma12345.github.io',
 
-	base: "/mizuki-blog",
+	base: base,
 	trailingSlash: "always",
 	integrations: [
 		tailwind({
@@ -49,7 +50,7 @@ export default defineConfig({
 			updateBodyClass: false,
 			globalInstance: true,
 			// 滚动相关配置优化
-			resolveUrl: (url) => `${import.meta.env.BASE_URL}${url}`,
+			resolveUrl: (url) => `${base}${url}`,
 			animateHistoryBrowsing: false,
 			skipPopStateHandling: (event) => {
 				// 跳过锚点链接的处理，让浏览器原生处理
